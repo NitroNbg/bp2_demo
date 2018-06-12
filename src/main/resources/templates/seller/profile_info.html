@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lični podaci</title>
+</head>
+<body>
+    <h1>Lični podaci</h1>
+    <form autocomplete="off" th:action="@{/seller/edit_profile}" th:object="${form}" method="post">
+        <fieldset>
+
+            <p><input type="text" th:field="*{firstName}" th:placeholder="Firstname" required="true" autofocus="true" /></p>
+
+            <p><input type="text" th:field="*{lastName}" th:placeholder="Lastname" required="true" /></p>
+
+            <p><input type="email" th:field="*{email}" th:placeholder="Email" required="true" /></p>
+
+            <p><input type="text" th:field="*{telephone}" th:placeholder="Phone" required="true" /></p>
+
+            <p><input type="text" th:field="*{pos}" th:placeholder="POS" id="input_field_pos" /></p>
+        </fieldset>
+
+        <br/><br/>
+        <div class="row">
+            <div class="col-sm-12 col-md-push-3 col-md-6">
+                <input type="submit" class="btn btn-lg btn-primary" th:value="Potvrdi" />
+            </div>
+        </div>
+    </form>
+
+    <div th:if="${status != null}" th:text="'Request has been completed successfully'">
+
+    </div>
+</body>
+</html>

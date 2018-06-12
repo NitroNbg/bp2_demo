@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pregled rezervacija</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pregled rezevacija</h1>
+    <div th:if="${reservation_list != null}">
+        <table>
+            <thead>
+                <tr>
+                    <td>Ime</td>
+                    <td>Prezime</td>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Mobilni</td>
+                    <td>Broj sobe</td>
+                    <td>Apartman</td>
+                    <td>Adresa</td>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="reservation : ${reservation_list}">
+                    <tr th:utext="${reservation.generateReservationTableRow()}">
+
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

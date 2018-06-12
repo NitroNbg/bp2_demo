@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pronađite apartman</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pronađite apartman</h1>
+    <form th:action="@{/buyer/apartment_lookup}" th:object="${form}" method="post">
+        <div>
+            <select th:field="*{country}">
+                <th:block th:each="c : ${countries}">
+                    <option th:value="${c}" th:text="${c}"></option>
+                </th:block>
+            </select>
+            <select th:field="*{city}">
+                <th:block th:each="c : ${cities}">
+                    <option th:value="${c}" th:text="${c}"></option>
+                </th:block>
+            </select>
+            <input th:type="submit" th:value="'Pretraga'" />
+        </div>
+    </form>
+
+    <div th:if="${apartment_list != null}">
+        <table>
+            <thead>
+                <tr>
+                    <td>Naziv</td>
+                    <td>Opis</td>
+                    <td>Adresa</td>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="apartment : ${apartment_list}">
+                    <tr>
+                        <td><a th:href="@{/buyer/view_apartment/} + ${apartment.getId()}" th:text="${apartment.getName()}"></a></td>
+                        <td th:text="${apartment.getDescription()}"></td>
+                        <td th:text="${apartment.printAddress()}"></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>

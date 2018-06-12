@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Apartman</title>
+</head>
+<body>
+    <h1 th:text="${form.getName()}"></h1>
+
+    <div>
+        <form th:action="@{/seller/edit_apartment/} + ${form.getId()}" th:object="${form}" method="post">
+            <input type="text" th:field="*{name}" />
+            <input type="text" th:field="*{description}" />
+            <input type="submit" th:value="Potvrdi" />
+        </form>
+    </div>
+
+    <div th:if="${room_list != null}">
+        <table>
+            <thead>
+                <td>Broj sobe</td>
+                <td>Kapacitet</td>
+                <td>Opis</td>
+                <td></td>
+            </thead>
+            <tbody>
+                <th:block th:each="r : ${room_list}">
+                    <tr>
+                        <td th:text="${r.getNumber()}"></td>
+                        <td th:text="${r.getCapacity()}"></td>
+                        <td th:text="${r.getDescription()}"></td>
+                        <td th:utext="${r.extraFieldHTML()}"></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

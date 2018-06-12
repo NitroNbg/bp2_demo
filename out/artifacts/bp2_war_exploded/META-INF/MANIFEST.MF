@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: bp2
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: nstosic
+Implementation-Vendor-Id: rs.ac.bg.etf.sn120348
+Created-By: IntelliJ IDEA
+Build-Jdk: 10
+Main-Class: ${start-class}
+

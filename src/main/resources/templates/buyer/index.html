@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Dobrodošli!</h1>
+    <ul>
+        <li><a th:href="@{/buyer/profile_info}">Lični podaci</a></li>
+        <li><a th:href="@{/buyer/apartment_lookup}">Pronađite apartman</a></li>
+        <li><a th:href="@{/buyer/booking_overview}">Pregled rezervacija</a></li>
+        <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+    <div th:if="${status != null}">
+        <p th:text="${status}"></p>
+    </div>
+</body>
+</html>

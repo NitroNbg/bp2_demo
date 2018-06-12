@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Napravite novi nalog</title>
+    <script type="text/javascript">
+        function changeControlVisibility(selectValue) {
+            if (selectValue.options[selectValue.selectedIndex].value === '1') {
+                document.getElementById('input_field_pos').style.visibility = "visible";
+                document.getElementById('input_field_card_number').style.visibility = "hidden";
+                document.getElementById('input_field_card_number').value="";
+                document.getElementById('input_field_card_type').style.visibility = "hidden";
+                document.getElementById('input_field_card_type').value="";
+            }
+            else {
+                document.getElementById('input_field_pos').style.visibility = "hidden";
+                document.getElementById('input_field_pos').value="";
+                document.getElementById('input_field_card_number').style.visibility = "visible";
+                document.getElementById('input_field_card_type').style.visibility = "visible";
+            }
+        }
+    </script>
+</head>
+<body>
+<form autocomplete="off" th:action="@{/register}" th:object="${form}" method="post">
+
+        <fieldset>
+
+            <p><input type="text" th:field="*{firstName}" th:placeholder="Firstname" required="true" autofocus="true" /></p>
+
+            <p><input type="text" th:field="*{lastName}" th:placeholder="Lastname" required="true" /></p>
+
+            <p><input type="text" th:field="*{username}" th:placeholder="Username" required="true" /></p>
+
+            <p><input type="password" th:field="*{password}" th:placeholder="Password" required="true" /></p>
+
+            <p><input type="email" th:field="*{email}" th:placeholder="Email" required="true" /></p>
+
+            <p><input type="text" th:field="*{telephone}" th:placeholder="Phone" required="true" /></p>
+
+            <p>
+                <select th:field="*{roleId}" onchange="changeControlVisibility(this)">
+                    <option th:value="1" th:text="seller">Seller</option>
+                    <option th:value="2" th:text="buyer">Buyer</option>
+                </select>
+            </p>
+
+            <p><input type="text" th:field="*{pos}" th:placeholder="POS" id="input_field_pos" /></p>
+
+            <p><input type="text" th:field="*{cardNumber}" th:placeholder="CardNo" id="input_field_card_number" style="visibility: hidden;"/></p>
+
+            <p><input type="text" th:field="*{cardType}" th:placeholder="CardType" id="input_field_card_type" style="visibility: hidden;"/></p>
+        </fieldset>
+
+    <br/><br/>
+    <div class="row">
+        <div class="col-sm-12 col-md-push-3 col-md-6">
+            <input type="submit" class="btn btn-lg btn-primary" th:value="Potvrdi" />
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

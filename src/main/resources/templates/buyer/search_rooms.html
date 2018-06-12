@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pretraga dostupnih soba</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${apartment.getName()}"></h1>
+    <div th:if="${available_rooms != null}">
+        <table>
+            <thead>
+                <tr>
+                    <td>Broj</td>
+                    <td>Kapacitet</td>
+                    <td>Opis</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="room : ${available_rooms}">
+                    <tr>
+                        <td th:text="${room.getNumber()}"></td>
+                        <td th:text="${room.getCapacity()}"></td>
+                        <td th:text="${room.getDescription()}"></td>
+                        <td>
+                            <form th:action="@{/buyer/confirm_reservation/} + ${room.getId()}" th:object="${form}" method="post">
+                                <input type="hidden" th:field="*{id}" />
+                                <input type="hidden" th:field="*{start_date}" />
+                                <input type="hidden" th:field="*{end_date}" />
+                                <input type="submit" th:value="Rezerviši" />
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${available_rooms == null}">
+        Ne postoji dostupna soba u odabranom hotelu u traženo vreme.
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pregled rezervacija</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pregled rezervacija</h1>
+    <div>
+        <div th:if="${reservation_list != null}">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Ime</td>
+                        <td>Prezime</td>
+                        <td>Username</td>
+                        <td>Email</td>
+                        <td>Mobilni</td>
+                        <td>Broj sobe</td>
+                        <td>Apartman</td>
+                        <td>Adresa</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="reservation : ${reservation_list}">
+                        <tr th:utext="${reservation.generateTableRowForBuyer()}"></tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${reservation_list == null}">
+            Nemate nijednu rezervaciju.
+        </div>
+        <div>
+            <a th:href="@{/buyer/apartment_lookup}" th:text="'Napravite novu rezervaciju'"></a>
+        </div>
+    </div>
+</body>
+</html>

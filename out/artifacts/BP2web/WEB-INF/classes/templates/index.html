@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BP2</title>
+</head>
+<body>
+    <h1>Dobrodošli na BP2!</h1>
+    <p>Molimo Vas da popunite svoje pristupne podatke.</p>
+    <form action="#" th:action="@{/login}" th:object="${credentials}" method="post">
+        <p><input th:type="text" th:field="*{username}" th:placeholder="Korisničko ime" /></p>
+        <p><input th:type="password" th:field="*{password}" th:placeholder="Lozinka"></p>
+        <p><input th:type="submit" th:value="Potvrdi"/></p>
+    </form>
+</body>
+</html>

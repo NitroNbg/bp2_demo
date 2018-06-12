@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Apartman</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${apartment.getName()}"></h1>
+    <h3 th:text="${apartment.getDescription()}"></h3>
+    <h3 th:text="${apartment.printAddress()}"></h3>
+
+    <div th:if="${room_list != null}">
+        <table>
+            <thead>
+                <tr>
+                    <td>Broj</td>
+                    <td>Kapacitet</td>
+                    <td>Opis</td>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="room : ${room_list}">
+                    <tr>
+                        <td th:text="${room.getNumber()}"></td>
+                        <td th:text="${room.getCapacity()}"></td>
+                        <td th:text="${room.getDescription()}"></td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <a th:href="@{/buyer/book_apartment/} + ${apartment.getId()}" th:text="'Napravite novu rezervaciju'"></a>
+    </div>
+</body>
+</html>

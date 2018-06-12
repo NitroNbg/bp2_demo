@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Pregled apartmana</title>
+    <style>
+        table td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a th:href="@{/seller/add_apartment}">Dodavanje novog apartmana</a>
+    </div>
+    <div>
+        <br/>
+    </div>
+    <div th:if="${apartment_list != null}">
+        <table>
+            <thead>
+            <tr>
+                <td>Naziv</td>
+                <td>Opis</td>
+                <td>Adresa</td>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="apartment : ${apartment_list}">
+                <tr>
+                    <td><a th:href="@{/seller/edit_apartment/} + ${apartment.getId()}" th:text="${apartment.getName()}"></a></td>
+                    <td th:text="${apartment.getDescription()}"></td>
+                    <td th:text="${apartment.printAddress()}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
